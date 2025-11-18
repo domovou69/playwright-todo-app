@@ -176,4 +176,22 @@ router.get('/tags/all', (req: AuthRequest, res: Response): void => {
   }
 });
 
+// Clear all todos (for testing)
+router.delete('/', (req: AuthRequest, res: Response): void => {
+  try {
+    const userId = req.user!.id;
+    const todos = getTodosByUser(userId);
+
+    // Delete each todo
+    todos.forEach(todo => {
+      deleteTodo(todo.id, userId);
+    });
+
+    res.json({ message: 'All todos cleared', count: todos.length });
+  } catch (error) {
+    console.error('Clear todos error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 export default router;

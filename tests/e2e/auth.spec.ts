@@ -20,8 +20,8 @@ test.describe('Authentication', () => {
     await loginPage.goto();
     await loginPage.login('invalid', 'wrong');
 
-    const error = await loginPage.getError();
-    expect(error).toContain('Invalid credentials');
+    await expect(loginPage.errorMessage).toBeVisible();
+    await expect(loginPage.errorMessage).toContainText('Invalid credentials');
   });
 
   test('should show error with missing credentials', async ({ loginPage }) => {

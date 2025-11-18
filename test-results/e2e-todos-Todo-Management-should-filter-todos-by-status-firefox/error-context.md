@@ -1,0 +1,44 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - heading "Todo App" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Playwright Training Demo
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - text: Welcome,
+          - strong [ref=e12]: demo
+        - button "Logout" [ref=e13]
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - heading "My Todos" [level=2] [ref=e16]
+      - button "+ Add Todo" [ref=e17]
+    - generic [ref=e18]:
+      - generic [ref=e20]:
+        - heading "Filters" [level=3] [ref=e21]
+        - generic [ref=e22]:
+          - generic [ref=e23]: Search
+          - textbox "Search" [ref=e24]:
+            - /placeholder: Search todos...
+        - generic [ref=e25]:
+          - generic [ref=e26]: Status
+          - combobox "Status" [ref=e27]:
+            - option "All Statuses"
+            - option "Pending"
+            - option "In Progress"
+            - option "Completed" [selected]
+        - generic [ref=e28]:
+          - generic [ref=e29]: Priority
+          - combobox "Priority" [ref=e30]:
+            - option "All Priorities" [selected]
+            - option "Low"
+            - option "Medium"
+            - option "High"
+        - button "Clear Filters" [ref=e31]
+      - generic [ref=e33]:
+        - paragraph [ref=e34]: No todos found
+        - paragraph [ref=e35]: Create your first todo to get started!
+```

@@ -47,7 +47,7 @@ export class TodoPage extends BasePage {
   }
 
   getTodoItem(title: string): Locator {
-    return this.page.locator('[data-testid="todo-item"]', { hasText: title });
+    return this.page.locator('[data-testid="todo-item"]').filter({ hasText: title }).first();
   }
 
   async deleteTodo(title: string) {
@@ -59,7 +59,8 @@ export class TodoPage extends BasePage {
 
   async markTodoComplete(title: string) {
     const todoItem = this.getTodoItem(title);
-    await todoItem.locator('[data-testid="complete-checkbox"]').check();
+    const checkbox = todoItem.locator('[data-testid="complete-checkbox"]');
+    await checkbox.click();
     await this.page.waitForTimeout(500); // Wait for status update
   }
 

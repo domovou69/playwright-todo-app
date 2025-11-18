@@ -1,7 +1,10 @@
 import { test as base, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const authFile = path.join(__dirname, '../.auth/user.json');
 
 // Setup fixture that runs once per worker

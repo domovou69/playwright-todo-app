@@ -2,6 +2,8 @@ import { test, expect } from '../fixtures/todo.fixture';
 
 test.describe('Todo Management', () => {
   test.beforeEach(async ({ page }) => {
+    // Clear all todos before each test
+    await page.request.delete('http://localhost:5173/api/todos');
     // Each test starts with a clean slate by using authenticated fixture
     await page.goto('/todos');
   });
