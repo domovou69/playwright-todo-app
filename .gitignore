@@ -12,6 +12,15 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+.env.local
+
+# Database
+data/
+*.db
+*.db-journal
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +31,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+playwright-report/*
+playwright-report/index.html
+test-results/*
+tests/.auth/user.json
+playwright-report/index.html
+playwright-report/index.html
+test-results/.last-run.json

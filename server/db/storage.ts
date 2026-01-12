@@ -1,10 +1,14 @@
 import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
+import { db } from './db';
+
+const SALT_ROUNDS = 10;
 
 export interface User {
   id: string;
   username: string;
   email: string;
-  password: string; // In a real app, this would be hashed
+  password: string; // Hashed password
 }
 
 export interface Todo {
@@ -20,69 +24,158 @@ export interface Todo {
   userId: string;
 }
 
-// In-memory storage
-const users: Map<string, User> = new Map();
-const todos: Map<string, Todo> = new Map();
-
 // Seed with demo users
-export function seedDatabase() {
-  const demoUser: User = {
-    id: uuidv4(),
-    username: 'demo',
-    email: 'demo@example.com',
-    password: 'password123', // In production, use bcrypt
-  };
+export async function seedDatabase() {
+  const demoUser = getUserByUsername('demo');
+  const testUser = getUserByUsername('testuser');
 
-  const testUser: User = {
-    id: uuidv4(),
-    username: 'testuser',
-    email: 'test@example.com',
-    password: 'password123',
-  };
+  if (!demoUser) {
+    await createUser({
+      username: 'demo',
+      email: 'demo@example.com',
+      password: 'password123',
+    });
+    console.log('Created demo user');
+  }
 
-  users.set(demoUser.username, demoUser);
-  users.set(testUser.username, testUser);
+  if (!testUser) {
+    await createUser({
+      username: 'testuser',
+      email: 'test@example.com',
+      password: 'password123',
+    });
+    console.log('Created test user');
+  }
 
   console.log('Database seeded with demo users');
 }
 
 // User operations
 export function getUserByUsername(username: string): User | undefined {
-  return users.get(username);
+  const stmt = db.prepare('SELECT * FROM users WHERE username = ?');
+  return stmt.get(username) as User | undefined;
 }
 
 export function getUserById(id: string): User | undefined {
-  for (const user of users.values()) {
-    if (user.id === id) {
-      return user;
-    }
-  }
-  return undefined;
+  const stmt = db.prepare('SELECT * FROM users WHERE id = ?');
+  return stmt.get(id) as User | undefined;
+}
+
+export function getUserByEmail(email: string): User | undefined {
+  const stmt = db.prepare('SELECT * FROM users WHERE email = ?');
+  return stmt.get(email) as User | undefined;
+}
+
+export async function createUser(data: {
+  username: string;
+  email: string;
+  password: string;
+}): Promise<User> {
+  const hashedPassword = await bcrypt.hash(data.password, SALT_ROUNDS);
+  const id = uuidv4();
+
+  const stmt = db.prepare(`
+    INSERT INTO users (id, username, email, password)
+    VALUES (?, ?, ?, ?)
+  `);
+
+  stmt.run(id, data.username, data.email, hashedPassword);
+
+  return {
+    id,
+    username: data.username,
+    email: data.email,
+    password: hashedPassword,
+  };
+}
+
+export async function verifyPassword(plainPassword: string, hashedPassword: string): Promise<boolean> {
+  return bcrypt.compare(plainPassword, hashedPassword);
 }
 
 // Todo operations
 export function getTodosByUser(userId: string): Todo[] {
-  return Array.from(todos.values()).filter(todo => todo.userId === userId);
+  const stmt = db.prepare(`
+    SELECT
+      id,
+      title,
+      description,
+      status,
+      priority,
+      due_date as dueDate,
+      tags,
+      created_at as createdAt,
+      updated_at as updatedAt,
+      user_id as userId
+    FROM todos
+    WHERE user_id = ?
+    ORDER BY created_at DESC
+  `);
+
+  const rows = stmt.all(userId) as any[];
+
+  // Parse tags from JSON string
+  return rows.map(row => ({
+    ...row,
+    tags: JSON.parse(row.tags),
+  }));
 }
 
 export function getTodoById(id: string, userId: string): Todo | undefined {
-  const todo = todos.get(id);
-  if (todo && todo.userId === userId) {
-    return todo;
-  }
-  return undefined;
+  const stmt = db.prepare(`
+    SELECT
+      id,
+      title,
+      description,
+      status,
+      priority,
+      due_date as dueDate,
+      tags,
+      created_at as createdAt,
+      updated_at as updatedAt,
+      user_id as userId
+    FROM todos
+    WHERE id = ? AND user_id = ?
+  `);
+
+  const row = stmt.get(id, userId) as any;
+
+  if (!row) return undefined;
+
+  return {
+    ...row,
+    tags: JSON.parse(row.tags),
+  };
 }
 
 export function createTodo(data: Omit<Todo, 'id' | 'createdAt' | 'updatedAt'>): Todo {
   const now = new Date().toISOString();
-  const todo: Todo = {
-    id: uuidv4(),
+  const id = uuidv4();
+
+  const stmt = db.prepare(`
+    INSERT INTO todos (id, title, description, status, priority, due_date, tags, created_at, updated_at, user_id)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `);
+
+  stmt.run(
+    id,
+    data.title,
+    data.description,
+    data.status,
+    data.priority,
+    data.dueDate,
+    JSON.stringify(data.tags),
+    now,
+    now,
+    data.userId
+  );
+
+  return {
+    id,
     ...data,
     createdAt: now,
     updatedAt: now,
   };
-  todos.set(todo.id, todo);
-  return todo;
 }
 
 export function updateTodo(
@@ -90,26 +183,60 @@ export function updateTodo(
   userId: string,
   data: Partial<Omit<Todo, 'id' | 'userId' | 'createdAt'>>
 ): Todo | null {
-  const todo = todos.get(id);
-  if (!todo || todo.userId !== userId) {
+  const todo = getTodoById(id, userId);
+  if (!todo) {
     return null;
   }
 
-  const updatedTodo: Todo = {
-    ...todo,
-    ...data,
-    updatedAt: new Date().toISOString(),
-  };
-  todos.set(id, updatedTodo);
-  return updatedTodo;
+  const updatedAt = new Date().toISOString();
+  const updates: string[] = [];
+  const values: any[] = [];
+
+  if (data.title !== undefined) {
+    updates.push('title = ?');
+    values.push(data.title);
+  }
+  if (data.description !== undefined) {
+    updates.push('description = ?');
+    values.push(data.description);
+  }
+  if (data.status !== undefined) {
+    updates.push('status = ?');
+    values.push(data.status);
+  }
+  if (data.priority !== undefined) {
+    updates.push('priority = ?');
+    values.push(data.priority);
+  }
+  if (data.dueDate !== undefined) {
+    updates.push('due_date = ?');
+    values.push(data.dueDate);
+  }
+  if (data.tags !== undefined) {
+    updates.push('tags = ?');
+    values.push(JSON.stringify(data.tags));
+  }
+
+  updates.push('updated_at = ?');
+  values.push(updatedAt);
+
+  values.push(id, userId);
+
+  const stmt = db.prepare(`
+    UPDATE todos
+    SET ${updates.join(', ')}
+    WHERE id = ? AND user_id = ?
+  `);
+
+  stmt.run(...values);
+
+  return getTodoById(id, userId)!;
 }
 
 export function deleteTodo(id: string, userId: string): boolean {
-  const todo = todos.get(id);
-  if (!todo || todo.userId !== userId) {
-    return false;
-  }
-  return todos.delete(id);
+  const stmt = db.prepare('DELETE FROM todos WHERE id = ? AND user_id = ?');
+  const result = stmt.run(id, userId);
+  return result.changes > 0;
 }
 
 export function getAllTags(userId: string): string[] {
@@ -121,10 +248,22 @@ export function getAllTags(userId: string): string[] {
   return Array.from(tagSet);
 }
 
-// Clear all data (useful for testing)
-export function clearDatabase() {
-  todos.clear();
+// Clear all todos for a user (useful for testing)
+export function clearDatabase(userId?: string) {
+  if (userId) {
+    const stmt = db.prepare('DELETE FROM todos WHERE user_id = ?');
+    stmt.run(userId);
+  } else {
+    // Clear all todos (but keep users)
+    db.prepare('DELETE FROM todos').run();
+  }
 }
 
-// Initialize database
-seedDatabase();
+// Reset entire database (useful for testing)
+export function resetDatabase() {
+  db.prepare('DELETE FROM todos').run();
+  db.prepare('DELETE FROM users').run();
+}
+
+// Initialize database with seed data
+seedDatabase().catch(console.error);

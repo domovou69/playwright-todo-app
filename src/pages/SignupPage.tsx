@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { LoginForm } from '../components/auth/LoginForm';
+import { SignupForm } from '../components/auth/SignupForm';
 import { authService } from '../services/auth';
-import type { LoginCredentials } from '../types/auth';
+import type { SignupCredentials } from '../types/auth';
 
-export function LoginPage() {
+export function SignupPage() {
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleLogin = async (credentials: LoginCredentials) => {
+  const handleSignup = async (credentials: SignupCredentials) => {
     setError(null);
     setIsLoading(true);
 
     try {
-      await authService.login(credentials);
+      await authService.signup(credentials);
       navigate('/todos');
     } catch (err: any) {
-      setError(err.message || 'Login failed');
+      setError(err.message || 'Signup failed');
     } finally {
       setIsLoading(false);
     }
@@ -32,14 +32,14 @@ export function LoginPage() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-8">
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Login</h2>
-          <LoginForm onSubmit={handleLogin} error={error} isLoading={isLoading} />
+          <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Sign Up</h2>
+          <SignupForm onSubmit={handleSignup} error={error} isLoading={isLoading} />
 
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
-              Don't have an account?{' '}
-              <Link to="/signup" className="text-blue-600 hover:text-blue-700 font-medium">
-                Sign up here
+              Already have an account?{' '}
+              <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium">
+                Login here
               </Link>
             </p>
           </div>

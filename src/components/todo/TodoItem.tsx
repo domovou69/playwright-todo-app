@@ -13,6 +13,12 @@ const priorityColors = {
   high: 'bg-red-100 text-red-800',
 };
 
+const statusColors = {
+  pending: 'border-blue-500',
+  'in-progress': 'border-yellow-500',
+  completed: 'border-green-500',
+};
+
 const statusOptions: TodoStatus[] = ['pending', 'in-progress', 'completed'];
 
 export function TodoItem({ todo, onStatusChange, onEdit, onDelete }: TodoItemProps) {
@@ -21,7 +27,7 @@ export function TodoItem({ todo, onStatusChange, onEdit, onDelete }: TodoItemPro
   return (
     <div
       data-testid="todo-item"
-      className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500"
+      className={`bg-white p-4 rounded-lg shadow-md border-l-4 ${statusColors[todo.status]}`}
     >
       <div className="flex items-start justify-between gap-4">
         <div className="flex-1">

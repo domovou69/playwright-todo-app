@@ -1,10 +1,17 @@
 import { api } from './api';
 import { storage } from '../utils/storage';
-import type { LoginCredentials, AuthResponse, User } from '../types/auth';
+import type { LoginCredentials, SignupCredentials, AuthResponse, User } from '../types/auth';
 
 export const authService = {
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
     const response = await api.post<AuthResponse>('/auth/login', credentials);
+    storage.setToken(response.token);
+    storage.setUser(response.user);
+    return response;
+  },
+
+  async signup(credentials: SignupCredentials): Promise<AuthResponse> {
+    const response = await api.post<AuthResponse>('/auth/signup', credentials);
     storage.setToken(response.token);
     storage.setUser(response.user);
     return response;
