@@ -1,19 +1,16 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/login";
-import { TodosPage } from "../pages/todos";
+import { expect } from "@playwright/test";
+import { test } from "../fixtures/base";
 
 const username = "demo";
 const password = "password123";
 
 test.describe("Filter Todos by Priority", () => {
-  test("Filter by low priority", async ({ page }) => {
+  test("Filter by low priority", async ({ page, loginPage, todosPage }) => {
     await page.goto("/");
 
-    const loginPage = new LoginPage(page);
     await loginPage.login(username, password);
     await expect(page).toHaveURL("/todos");
 
-    const todosPage = new TodosPage(page);
     await todosPage.filters.selectPriority("Low");
     await expect(todosPage.todoItem.filter({ hasText: "low" })).toBeVisible();
     await expect(
@@ -24,14 +21,12 @@ test.describe("Filter Todos by Priority", () => {
     ).not.toBeVisible();
   });
 
-  test("Filter by medium priority", async ({ page }) => {
+  test("Filter by medium priority", async ({ page, loginPage, todosPage }) => {
     await page.goto("/");
 
-    const loginPage = new LoginPage(page);
     await loginPage.login(username, password);
     await expect(page).toHaveURL("/todos");
 
-    const todosPage = new TodosPage(page);
     await todosPage.filters.selectPriority("Medium");
     await expect(
       todosPage.todoItem.filter({ hasText: "low" }),
@@ -44,14 +39,12 @@ test.describe("Filter Todos by Priority", () => {
     ).not.toBeVisible();
   });
 
-  test("Filter by high priority", async ({ page }) => {
+  test("Filter by high priority", async ({ page, loginPage, todosPage }) => {
     await page.goto("/");
 
-    const loginPage = new LoginPage(page);
     await loginPage.login(username, password);
     await expect(page).toHaveURL("/todos");
 
-    const todosPage = new TodosPage(page);
     await todosPage.filters.selectPriority("High");
     await expect(
       todosPage.todoItem.filter({ hasText: "low" }),
@@ -62,14 +55,12 @@ test.describe("Filter Todos by Priority", () => {
     await expect(todosPage.todoItem.filter({ hasText: "high" })).toBeVisible();
   });
 
-  test("Clear priority filter", async ({ page }) => {
+  test("Clear priority filter", async ({ page, loginPage, todosPage }) => {
     await page.goto("/");
 
-    const loginPage = new LoginPage(page);
     await loginPage.login(username, password);
     await expect(page).toHaveURL("/todos");
 
-    const todosPage = new TodosPage(page);
     await todosPage.filters.selectPriority("Low");
     await expect(
       todosPage.todoItem.filter({ hasText: "high" }),
