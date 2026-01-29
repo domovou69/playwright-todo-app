@@ -1,5 +1,5 @@
 import { expect } from "@playwright/test";
-import { test } from "../fixtures/base";
+import { test } from "../fixtures/fixtures";
 
 const username = "demo";
 const password = "password123";
