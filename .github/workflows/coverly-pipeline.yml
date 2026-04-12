@@ -54,14 +54,16 @@ jobs:
           token: ${{ secrets.COVERLY_TOKEN || github.token }}
           path: .coverly
 
-      # 3. Setup Node + pnpm (install pnpm via npm to bypass corepack)
+      # 3. Setup Node + pnpm
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
 
       - name: Install pnpm
-        run: npm install -g pnpm@10
+        run: |
+          corepack disable
+          npm install -g pnpm@10
 
       - name: Install Coverly dependencies
         run: pnpm install --frozen-lockfile
