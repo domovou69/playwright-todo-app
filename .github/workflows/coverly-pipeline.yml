@@ -27,13 +27,10 @@ on:
   pull_request:
 
 permissions:
-  contents: write      # needed to commit builds.json back
-  pull-requests: write # needed to post PR comments
+  contents: write
+  pull-requests: write
 
 env:
-  # Allow pnpm (used by .coverly) to run even though this app declares
-  # "packageManager": "yarn" in its package.json. Without this, corepack
-  # would block pnpm when it walks up from .coverly/ to the workspace root.
   COREPACK_ENABLE_STRICT: '0'
 
 jobs:
@@ -41,13 +38,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout the consumer app
+      # 1. Checkout the app
       - name: Checkout app
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. Checkout Coverly as a sibling tool
+      # 2. Checkout Coverly as a sibling tool at .coverly/
       - name: Checkout Coverly
         uses: actions/checkout@v4
         with:
@@ -55,30 +52,25 @@ jobs:
           token: ${{ secrets.COVERLY_TOKEN || github.token }}
           path: .coverly
 
-      # 3. Setup pnpm (for Coverly), then Node
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
+      # 3. Setup Node
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 24
 
-      # 4. Install dependencies
+      # 4. Install app dependencies
       - name: Install app dependencies
-        run: |
-          if   [ -f yarn.lock        ]; then yarn install --frozen-lockfile
-          elif [ -f package-lock.json ]; then npm ci
-          elif [ -f pnpm-lock.yaml   ]; then pnpm install --frozen-lockfile
-          fi
+        run: npm ci
+
+      # 5. Install pnpm for Coverly only
+      - name: Install pnpm
+        run: npm install -g pnpm@10
 
       - name: Install Coverly dependencies
         run: pnpm install --frozen-lockfile
         working-directory: .coverly
 
-      # 5. Restore graph history from cache (enables cross-build flaky detection)
+      # 6. Restore graph history from cache
       - name: Restore graph cache
         uses: actions/cache@v4
         with:
@@ -88,7 +80,7 @@ jobs:
             coverly-graph-${{ github.ref_name }}-
             coverly-graph-main-
 
-      # 6. Extract app + test structure
+      # 7. Extract app + test structure
       - name: Extract React app
         run: pnpm extract ..
         working-directory: .coverly
@@ -97,23 +89,27 @@ jobs:
         run: pnpm extract:tests ..
         working-directory: .coverly
 
-      # 7. Diff and snapshot
+      # 8. Diff and snapshot
       - name: Generate coverage diff
         run: pnpm diff
         working-directory: .coverly
 
       - name: Create build snapshot
-        run: pnpm snapshot ${{ github.base_ref == 'main' && 'staging' || 'dev' }} ${{ github.sha }}
+        run: pnpm snapshot ${{ github.ref_name == 'main' && 'production' || 'staging' }} ${{ github.sha }}
         working-directory: .coverly
 
-      # 8. Run Playwright tests (continue even if tests fail so we still get the report)
+      # 9. Run Playwright tests
+      #    The webServer in playwright.config.ts starts vite (which embeds
+      #    the Express API via apiPlugin), so no separate server step needed.
+      #    Install all 3 browsers since playwright.config has chromium/firefox/webkit.
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=json --output=test-results 2>/dev/null | tee playwright-report.json || true
+        run: npx playwright test --reporter=json 2>/dev/null | tee playwright-report.json
+        continue-on-error: true
 
-      # 9. Analyse report + rebuild index
+      # 10. Analyse report + rebuild index
       - name: Analyse test report
         run: |
           BUILD_ID=$(cat graph/.last-build-id)
@@ -124,8 +120,9 @@ jobs:
         run: pnpm index
         working-directory: .coverly
 
-      # 10. Post PR comment
+      # 11. Post PR comment
       - name: Post PR comment
+        if: github.event_name == 'pull_request'
         run: |
           BUILD_ID=$(cat graph/.last-build-id)
           pnpm comment "$BUILD_ID"
@@ -135,7 +132,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
 
-      # 11. Commit builds.json back to repo on main (so history persists across runs)
+      # 12. Commit builds.json back on main pushes
       - name: Commit builds.json
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
@@ -144,3 +141,4 @@ jobs:
           git add .coverly/graph/builds.json
           git diff --staged --quiet || git commit -m "chore: coverly build history [skip ci]"
           git push
+
