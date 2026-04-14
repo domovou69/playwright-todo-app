@@ -67,7 +67,7 @@ jobs:
         run: npm install -g pnpm@10
 
       - name: Install Coverly dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
         working-directory: .coverly
 
       # 6. Restore graph history from cache
