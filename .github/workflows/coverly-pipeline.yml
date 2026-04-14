@@ -2,7 +2,7 @@
 #
 # Copy this file to .github/workflows/coverly.yml in your app repo.
 #
-# What it does on every push / PR:
+# What it does on every PR:
 #   1. Extracts React app structure  → app-manifest.json
 #   2. Extracts test structure       → test-manifest.json
 #   3. Diffs app vs tests            → diff-report.json
@@ -13,13 +13,8 @@
 #   8. Posts a summary comment on PR
 #   9. Commits builds.json back to the repo (on main only)
 #
-# Prerequisites:
-#   - Your repo has Playwright tests
-#   - Set COVERLY_REPO secret to the coverly repo (e.g. "your-org/coverly")
-#     or replace the checkout step with a local path if coverly is a submodule
-#
 # Required secrets (Settings → Secrets → Actions):
-#   - COVERLY_REPO: GitHub repo path for coverly, e.g. "your-org/coverly"
+#   - COVERLY_REPO:  GitHub repo path for coverly, e.g. "your-org/coverly"
 #   - COVERLY_TOKEN: PAT with repo read access to coverly (or remove if public)
 #
 # The GITHUB_TOKEN secret is provided automatically by GitHub Actions.
@@ -27,13 +22,17 @@
 name: Coverly Pipeline
 
 on:
-  push:
-    branches: [main]
   pull_request:
 
 permissions:
-  contents: write # needed to commit builds.json back
+  contents: write      # needed to commit builds.json back
   pull-requests: write # needed to post PR comments
+
+env:
+  # Allow pnpm (used by .coverly) to run even though this app declares
+  # "packageManager": "yarn" in its package.json. Without this, corepack
+  # would block pnpm when it walks up from .coverly/ to the workspace root.
+  COREPACK_ENABLE_STRICT: '0'
 
 jobs:
   coverly:
@@ -46,7 +45,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 2. Checkout coverly as a sibling tool
+      # 2. Checkout Coverly as a sibling tool
       - name: Checkout Coverly
         uses: actions/checkout@v4
         with:
@@ -54,7 +53,7 @@ jobs:
           token: ${{ secrets.COVERLY_TOKEN || github.token }}
           path: .coverly
 
-      # 3. Setup Node + pnpm (for Coverly)
+      # 3. Setup pnpm (for Coverly), then Node
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
         with:
@@ -65,19 +64,19 @@ jobs:
         with:
           node-version: 24
 
-      # Install app dependencies using whatever package manager the app uses
+      # 4. Install dependencies
       - name: Install app dependencies
         run: |
-          if [ -f yarn.lock ]; then yarn install --frozen-lockfile
+          if   [ -f yarn.lock        ]; then yarn install --frozen-lockfile
           elif [ -f package-lock.json ]; then npm ci
-          elif [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile
+          elif [ -f pnpm-lock.yaml   ]; then pnpm install --frozen-lockfile
           fi
 
       - name: Install Coverly dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
         working-directory: .coverly
 
-      # 4. Restore graph history from cache (enables cross-build flaky detection)
+      # 5. Restore graph history from cache (enables cross-build flaky detection)
       - name: Restore graph cache
         uses: actions/cache@v4
         with:
@@ -87,7 +86,7 @@ jobs:
             coverly-graph-${{ github.ref_name }}-
             coverly-graph-main-
 
-      # 5. Extract app + test structure
+      # 6. Extract app + test structure
       - name: Extract React app
         run: pnpm extract ..
         working-directory: .coverly
@@ -96,24 +95,23 @@ jobs:
         run: pnpm extract:tests ..
         working-directory: .coverly
 
-      # 6. Diff and snapshot
+      # 7. Diff and snapshot
       - name: Generate coverage diff
         run: pnpm diff
         working-directory: .coverly
 
       - name: Create build snapshot
-        run: pnpm snapshot ${{ github.ref_name == 'main' && 'production' || 'staging' }} ${{ github.sha }}
+        run: pnpm snapshot ${{ github.base_ref == 'main' && 'staging' || 'dev' }} ${{ github.sha }}
         working-directory: .coverly
 
-      # 7. Run Playwright tests (continue even if tests fail)
+      # 8. Run Playwright tests (continue even if tests fail so we still get the report)
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=json 2>/dev/null | tee playwright-report.json
-        continue-on-error: true
+        run: npx playwright test --reporter=json --output=test-results 2>/dev/null | tee playwright-report.json || true
 
-      # 8. Analyse report + rebuild index
+      # 9. Analyse report + rebuild index
       - name: Analyse test report
         run: |
           BUILD_ID=$(cat graph/.last-build-id)
@@ -124,9 +122,8 @@ jobs:
         run: pnpm index
         working-directory: .coverly
 
-      # 9. Post PR comment
+      # 10. Post PR comment
       - name: Post PR comment
-        if: github.event_name == 'pull_request'
         run: |
           BUILD_ID=$(cat graph/.last-build-id)
           pnpm comment "$BUILD_ID"
@@ -136,7 +133,7 @@ jobs:
           GITHUB_REPOSITORY: ${{ github.repository }}
           PR_NUMBER: ${{ github.event.pull_request.number }}
 
-      # 10. Commit builds.json back to repo on main
+      # 11. Commit builds.json back to repo on main (so history persists across runs)
       - name: Commit builds.json
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
