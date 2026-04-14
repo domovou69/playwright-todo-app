@@ -32,7 +32,7 @@ on:
   pull_request:
 
 permissions:
-  contents: write      # needed to commit builds.json back
+  contents: write # needed to commit builds.json back
   pull-requests: write # needed to post PR comments
 
 jobs:
@@ -74,7 +74,7 @@ jobs:
           fi
 
       - name: Install Coverly dependencies
-        run: pnpm install --frozen-lockfile
+        run: yarn install --frozen-lockfile
         working-directory: .coverly
 
       # 4. Restore graph history from cache (enables cross-build flaky detection)
