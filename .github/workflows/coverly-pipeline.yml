@@ -20,7 +20,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      # Checkout coverly privately, then reference as local action
+      # Checkout coverly privately, then reference as local action 
       - uses: actions/checkout@v4
         with:
           repository: domovou69/coverly
