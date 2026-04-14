@@ -38,3 +38,5 @@ tests/.auth/user.json
 playwright-report/index.html
 playwright-report/index.html
 test-results/.last-run.json
+
+package-lock.json
