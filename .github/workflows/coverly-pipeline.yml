@@ -1,24 +1,3 @@
-# Coverly CI Pipeline
-#
-# Copy this file to .github/workflows/coverly.yml in your app repo.
-#
-# What it does on every PR:
-#   1. Extracts React app structure  → app-manifest.json
-#   2. Extracts test structure       → test-manifest.json
-#   3. Diffs app vs tests            → diff-report.json
-#   4. Creates a versioned snapshot  → graph/snapshots/build-<id>/
-#   5. Runs Playwright tests         → playwright-report.json
-#   6. Analyses failures             → report-analysis.json
-#   7. Rebuilds SQLite index         → graph/graph.db
-#   8. Posts a summary comment on PR
-#   9. Commits builds.json back to the repo (on main only)
-#
-# Required secrets (Settings → Secrets → Actions):
-#   - COVERLY_REPO:  GitHub repo path for coverly, e.g. "your-org/coverly"
-#   - COVERLY_TOKEN: PAT with repo read access to coverly (or remove if public)
-#
-# The GITHUB_TOKEN secret is provided automatically by GitHub Actions.
-
 name: Coverly Pipeline
 
 on:
@@ -36,72 +15,18 @@ env:
 jobs:
   coverly:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Checkout the app
-      - name: Checkout app
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # 2. Checkout Coverly as a sibling tool at .coverly/
-      - name: Checkout Coverly
-        uses: actions/checkout@v4
-        with:
-          repository: ${{ secrets.COVERLY_REPO }}
-          token: ${{ secrets.COVERLY_TOKEN || github.token }}
-          path: .coverly
-
-      # 3. Setup Node
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
 
-      # 4. Install app dependencies
       - name: Install app dependencies
         run: npm ci
 
-      # 5. Install pnpm for Coverly only
-      - name: Install pnpm
-        run: npm install -g pnpm@10
-
-      - name: Install Coverly dependencies
-        run: pnpm install
-        working-directory: .coverly
-
-      # 6. Restore graph history from cache
-      - name: Restore graph cache
-        uses: actions/cache@v4
-        with:
-          path: .coverly/graph
-          key: coverly-graph-${{ github.ref_name }}-${{ github.run_id }}
-          restore-keys: |
-            coverly-graph-${{ github.ref_name }}-
-            coverly-graph-main-
-
-      # 7. Extract app + test structure
-      - name: Extract React app
-        run: pnpm extract ..
-        working-directory: .coverly
-
-      - name: Extract test structure
-        run: pnpm extract:tests ..
-        working-directory: .coverly
-
-      # 8. Diff and snapshot
-      - name: Generate coverage diff
-        run: pnpm diff
-        working-directory: .coverly
-
-      - name: Create build snapshot
-        run: pnpm snapshot ${{ github.ref_name == 'main' && 'production' || 'staging' }} ${{ github.sha }}
-        working-directory: .coverly
-
-      # 9. Run Playwright tests
-      #    The webServer in playwright.config.ts starts vite (which embeds
-      #    the Express API via apiPlugin), so no separate server step needed.
-      #    Install all 3 browsers since playwright.config has chromium/firefox/webkit.
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
@@ -109,36 +34,7 @@ jobs:
         run: npx playwright test --reporter=json 2>/dev/null | tee playwright-report.json
         continue-on-error: true
 
-      # 10. Analyse report + rebuild index
-      - name: Analyse test report
-        run: |
-          BUILD_ID=$(cat graph/.last-build-id)
-          pnpm report ../playwright-report.json "$BUILD_ID"
-        working-directory: .coverly
-
-      - name: Rebuild SQLite index
-        run: pnpm index
-        working-directory: .coverly
-
-      # 11. Post PR comment
-      - name: Post PR comment
-        if: github.event_name == 'pull_request'
-        run: |
-          BUILD_ID=$(cat graph/.last-build-id)
-          pnpm comment "$BUILD_ID"
-        working-directory: .coverly
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          PR_NUMBER: ${{ github.event.pull_request.number }}
-
-      # 12. Commit builds.json back on main pushes
-      - name: Commit builds.json
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          git config user.name "coverly-bot"
-          git config user.email "coverly-bot@users.noreply.github.com"
-          git add .coverly/graph/builds.json
-          git diff --staged --quiet || git commit -m "chore: coverly build history [skip ci]"
-          git push
-
+      - uses: domovou69/coverly@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}

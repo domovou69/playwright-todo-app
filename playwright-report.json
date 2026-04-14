@@ -1,0 +1,2300 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\via\\coverly\\playwright-todo-app\\playwright.config.ts",
+    "rootDir": "C:/Users/via/coverly/playwright-todo-app/tests",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "html",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "C:/Users/via/coverly/playwright-todo-app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/via/coverly/playwright-todo-app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/via/coverly/playwright-todo-app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "C:/Users/via/coverly/playwright-todo-app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/via/coverly/playwright-todo-app/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "C:/Users/via/coverly/playwright-todo-app/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.57.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev",
+      "url": "http://localhost:5173",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "e2e\\filter-with-beforeEach.spec.ts",
+      "file": "e2e/filter-with-beforeEach.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Filter Todos by Priority",
+          "file": "e2e/filter-with-beforeEach.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Filter by low priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5760,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 69,
+                          "line": 16
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 69,
+                            "line": 16
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:38:55.207Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 69,
+                        "line": 16
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-2dbd3a1ed1a5c6d0bfa1",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 5680,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 65,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 65,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n\n\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:02.144Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-chromium\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-chromium\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-chromium\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 65,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-15093820393556c78fff",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 650,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:08.975Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a110c-ity-Filter-by-high-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-537b0f7e0cb46185b709",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 680,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:09.760Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-6f382-ority-Clear-priority-filter-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-f46b4f2d341a481dcfd1",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8807,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 69,
+                          "line": 16
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 69,
+                            "line": 16
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:18.951Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-firefox\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-firefox\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 69,
+                        "line": 16
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-d74cd8365d2a0b5071ef",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 8761,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 65,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 65,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n\n\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:29.955Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-firefox\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-firefox\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-firefox\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 65,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-5f16b97c2f2aacfb85a5",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3708,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:40.937Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a110c-ity-Filter-by-high-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-8206560ed509139dcf91",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2905,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:45.217Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-6f382-ority-Clear-priority-filter-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-f9f1f683706f47d6d896",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 56,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6421,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 69,
+                          "line": 16
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 69,
+                            "line": 16
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator:  getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: not visible\nReceived: visible\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"not toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\u001b[2m    9 × locator resolved to <div data-testid=\"todo-item\" class=\"bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-500\">…</div>\u001b[22m\n\u001b[2m      - unexpected value \"visible\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 14 |\u001b[39m   test(\u001b[32m'Filter by low priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 15 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Low'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 17 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 18 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 19 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:16:69\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:24.686Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-webkit\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-webkit\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-10393-rity-Filter-by-low-priority-webkit\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 69,
+                        "line": 16
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-13044f5a854c5d1f16f2",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 14,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 6281,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65",
+                        "location": {
+                          "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                          "column": 65,
+                          "line": 23
+                        },
+                        "snippet": "\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                            "column": 65,
+                            "line": 23
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByTestId('todo-item').filter({ hasText: 'low' })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByTestId('todo-item').filter({ hasText: 'low' })\u001b[22m\n\n\n\u001b[0m \u001b[90m 21 |\u001b[39m   test(\u001b[32m'Filter by medium priority'\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ todosPage }) \u001b[33m=>\u001b[39m {\n \u001b[90m 22 |\u001b[39m     \u001b[36mawait\u001b[39m todosPage\u001b[33m.\u001b[39mfilters\u001b[33m.\u001b[39mselectPriority(\u001b[32m'Medium'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 23 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'low'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m    |\u001b[39m                                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 24 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'medium'\u001b[39m }))\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 25 |\u001b[39m     \u001b[36mawait\u001b[39m expect(todosPage\u001b[33m.\u001b[39mtodoItem\u001b[33m.\u001b[39mfilter({ hasText\u001b[33m:\u001b[39m \u001b[32m'high'\u001b[39m }))\u001b[33m.\u001b[39mnot\u001b[33m.\u001b[39mtoBeVisible()\n \u001b[90m 26 |\u001b[39m   })\u001b[0m\n\u001b[2m    at C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts:23:65\u001b[22m"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:32.201Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-webkit\\test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-webkit\\error-context.md"
+                        },
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a67b9-y-Filter-by-medium-priority-webkit\\trace.zip"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "C:\\Users\\via\\coverly\\playwright-todo-app\\tests\\e2e\\filter-with-beforeEach.spec.ts",
+                        "column": 65,
+                        "line": 23
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-342fc3c03bc16d204e3d",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 28,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1414,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:39.538Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-a110c-ity-Filter-by-high-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-ba623086c38ad8b36307",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 42,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1521,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:41.053Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-beforeEach-6f382-ority-Clear-priority-filter-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e39ad10a6e399fd7c239-3b8589ab4dd8c8260c47",
+              "file": "e2e/filter-with-beforeEach.spec.ts",
+              "line": 56,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\filter-with-fixtures.spec.ts",
+      "file": "e2e/filter-with-fixtures.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Filter Todos by Priority",
+          "file": "e2e/filter-with-fixtures.spec.ts",
+          "line": 5,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 558,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:10.499Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-4f8e5-rity-Filter-by-low-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-63e1b09a280224d88320",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 6,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 579,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:11.094Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-85097-y-Filter-by-medium-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-5cf65449fd92a2b21ec4",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 579,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:11.711Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-d8590-ity-Filter-by-high-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-00b21bf965f84951307d",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 631,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:12.327Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-2e72b-ority-Clear-priority-filter-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-3213e96d6b72ebd2bee5",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 63,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2811,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:48.190Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-4f8e5-rity-Filter-by-low-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-0a28c0214fc765cbf65a",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 6,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2815,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:51.056Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-85097-y-Filter-by-medium-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-ee063519e64e2a1974e9",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2816,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:53.915Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-d8590-ity-Filter-by-high-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-89630ef51142d13d4c7a",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2894,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:56.776Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-2e72b-ority-Clear-priority-filter-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-774d6755ca03418f48e9",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 63,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1325,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:42.622Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-4f8e5-rity-Filter-by-low-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-1c16ee65fdefba13c4d2",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 6,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1232,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:43.986Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-85097-y-Filter-by-medium-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-0b6ccb2a080557b34b63",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 25,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1381,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:45.257Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-d8590-ity-Filter-by-high-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-cac285cfb5991bc47b39",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 44,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1714,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:46.676Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-fixtures-F-2e72b-ority-Clear-priority-filter-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2fd8a5c477babfd97926-4afc656ea74aca93ed37",
+              "file": "e2e/filter-with-fixtures.spec.ts",
+              "line": 63,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\filter-with-pom.spec.ts",
+      "file": "e2e/filter-with-pom.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Filter Todos by Priority",
+          "file": "e2e/filter-with-pom.spec.ts",
+          "line": 6,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 582,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:13.004Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-a0e7a-rity-Filter-by-low-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-34af6bc83fa3e8a99530",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 576,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:13.617Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-d039e-y-Filter-by-medium-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-4dddb0e9b748fae835e0",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 580,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:14.223Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-da2f5-ity-Filter-by-high-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-0dccaf57b129689b6c11",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 626,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:14.834Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-2183b-ority-Clear-priority-filter-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-02a0abe8435b74f52c24",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2786,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:59.734Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-a0e7a-rity-Filter-by-low-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-e9f79a09b5e55503ffed",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2941,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:02.568Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-d039e-y-Filter-by-medium-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-43befed4ef1a4d633d7b",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2814,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:05.552Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-da2f5-ity-Filter-by-high-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-e7608a0800577a56c892",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2907,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:08.407Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-2183b-ority-Clear-priority-filter-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-c8a02cf434b47471847a",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 64,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1104,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:48.441Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-a0e7a-rity-Filter-by-low-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-65d1bc4327844039bc62",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 7,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1323,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:49.574Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-d039e-y-Filter-by-medium-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-07442f6ccc85063b2788",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 26,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1340,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:50.927Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-da2f5-ity-Filter-by-high-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-7ef0f636b813bc31df3f",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 45,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1602,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:52.299Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-with-pom-Filter-2183b-ority-Clear-priority-filter-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5a0773851756e19ba872-14409bf14fc25e65a332",
+              "file": "e2e/filter-with-pom.spec.ts",
+              "line": 64,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "e2e\\filter.spec.ts",
+      "file": "e2e/filter.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Filter Todos by Priority",
+          "file": "e2e/filter.spec.ts",
+          "line": 4,
+          "column": 6,
+          "specs": [
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 556,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:15.504Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-low-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-c19d3f1813e25a9941a3",
+              "file": "e2e/filter.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 553,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:16.088Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-c888c-y-Filter-by-medium-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-c6ddb7fa05dcab6fd564",
+              "file": "e2e/filter.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 574,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:16.670Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-high-priority-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-da4d434f24009f07ba49",
+              "file": "e2e/filter.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 623,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:39:17.270Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Clear-priority-filter-chromium\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-908496588b567faedf68",
+              "file": "e2e/filter.spec.ts",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2874,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:11.386Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-low-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-bd6ec2d947fea3916adb",
+              "file": "e2e/filter.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2845,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:14.310Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-c888c-y-Filter-by-medium-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-4b4e665b5f22c1105943",
+              "file": "e2e/filter.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2825,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:17.194Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-high-priority-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-0cfbe313f9fbc4ca2fb4",
+              "file": "e2e/filter.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "firefox",
+                  "projectName": "firefox",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2893,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:20.074Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Clear-priority-filter-firefox\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-eef47b3edba1bbb32816",
+              "file": "e2e/filter.spec.ts",
+              "line": 86,
+              "column": 3
+            },
+            {
+              "title": "Filter by low priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1244,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:53.942Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-low-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-35af0f8de0b3ef62d08e",
+              "file": "e2e/filter.spec.ts",
+              "line": 5,
+              "column": 3
+            },
+            {
+              "title": "Filter by medium priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1229,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:55.215Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-c888c-y-Filter-by-medium-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-558aa44c0cc0e8788a56",
+              "file": "e2e/filter.spec.ts",
+              "line": 32,
+              "column": 3
+            },
+            {
+              "title": "Filter by high priority",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1395,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:56.474Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Filter-by-high-priority-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-a2cceaed7f5ea23afc43",
+              "file": "e2e/filter.spec.ts",
+              "line": 59,
+              "column": 3
+            },
+            {
+              "title": "Clear priority filter",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "webkit",
+                  "projectName": "webkit",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1584,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-12T19:40:57.897Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "trace",
+                          "contentType": "application/zip",
+                          "path": "C:\\Users\\via\\coverly\\playwright-todo-app\\test-results\\e2e-filter-Filter-Todos-by-Priority-Clear-priority-filter-webkit\\trace.zip"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e160b98b73c521d92322-3abc4d88d2aec359fc57",
+              "file": "e2e/filter.spec.ts",
+              "line": 86,
+              "column": 3
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-12T19:38:51.964Z",
+    "duration": 127750.721,
+    "expected": 42,
+    "skipped": 0,
+    "unexpected": 6,
+    "flaky": 0
+  }
+}
