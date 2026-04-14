@@ -22,6 +22,8 @@
 name: Coverly Pipeline
 
 on:
+  push:
+    branches: [main]
   pull_request:
 
 permissions:
