@@ -54,7 +54,12 @@ jobs:
           token: ${{ secrets.COVERLY_TOKEN || github.token }}
           path: .coverly
 
-      # 3. Setup Node
+      # 3. Setup Node + pnpm (for Coverly)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -65,12 +70,8 @@ jobs:
         run: |
           if [ -f yarn.lock ]; then yarn install --frozen-lockfile
           elif [ -f package-lock.json ]; then npm ci
-          elif [ -f pnpm-lock.yaml ]; then npm install -g pnpm@10 && pnpm install --frozen-lockfile
+          elif [ -f pnpm-lock.yaml ]; then pnpm install --frozen-lockfile
           fi
-
-      # Install pnpm for coverly only
-      - name: Install pnpm
-        run: npm install -g pnpm@10
 
       - name: Install Coverly dependencies
         run: pnpm install --frozen-lockfile
