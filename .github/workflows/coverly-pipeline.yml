@@ -20,6 +20,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Checkout coverly privately, then reference as local action
+      - uses: actions/checkout@v4
+        with:
+          repository: domovou69/coverly
+          token: ${{ secrets.COVERLY_TOKEN }}
+          path: .coverly
+
       - uses: actions/setup-node@v4
         with:
           node-version: 24
@@ -34,7 +41,8 @@ jobs:
         run: npx playwright test --reporter=json 2>/dev/null | tee playwright-report.json
         continue-on-error: true
 
-      - uses: domovou69/coverly@main
+      # Run coverly as a local action — no "not found" error since it's already on disk
+      - uses: ./.coverly
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           environment: ${{ github.ref_name == 'main' && 'production' || 'staging' }}
